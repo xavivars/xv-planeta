@@ -1,0 +1,56 @@
+{
+    "private" : true,
+    "key": "group_56fad11ad1681",
+    "title": "Blogs",
+    "fields": [
+        {
+            "key": "field_56fad124e62bf",
+            "label": "URL del blog",
+            "name": "blog_home_url",
+            "type": "url",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/el-meu-blog.com"
+        },
+        {
+            "key": "field_56fad14ee62c0",
+            "label": "URL del fil RSS",
+            "name": "blog_rss_url",
+            "type": "url",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/el-meu-blog.com\/feed\/"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "blog"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+}

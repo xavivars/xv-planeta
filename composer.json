@@ -1,0 +1,5 @@
+{
+    "name": "xavivars/xv-planeta",
+    "type": "wordpress-plugin",
+    "description": "Blog planet based on WordPress Custom Post Types and ACF integration"
+}
