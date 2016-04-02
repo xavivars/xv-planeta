@@ -6,6 +6,7 @@
 
 include( XV_PLANETA_PATH . 'classes/class.infrastructure.php' );
 include( XV_PLANETA_PATH . 'classes/class.config.php' );
+include( XV_PLANETA_PATH . 'classes/class.data.php' );
 
 
 class XV_Planet {
@@ -13,7 +14,13 @@ class XV_Planet {
 	private $config_list = false;
 	private $config_hash = false;
 	
-	private $max_entries_per_blog = 2;	
+	private $max_entries_per_blog = 2;
+	
+	private $main_feed_url = 'https://www.softcatala.org/planeta/rss.xml';
+	private $main_feed_title = 'Planeta Softcatalà';
+	private $main_feed_website = 'https://www.softcatala.org/planeta/';
+	
+	private $feed;
 	
 	public function __construct() {
 		new XV_Planet_Infrastructure();
@@ -34,19 +41,21 @@ class XV_Planet {
 	
 	private function prepare_items( $limited_feed ) {
 		
-		$new_feed = array();
+		$new_feed = new XV_Planet_Data( $this->main_feed_url, $this->main_feed_title, $this->main_feed_website );
 		
 		foreach( $limited_feed as $item ) {
 			
 			$feed_config = $this->get_feed_config( $item->feed->feed_url );
 			
-			$new_feed[] = array(
+			$new_feed->add(array(
 				'entry_title' => $item->get_title(),
 				'blog_title'  => $item->feed->get_title(),
 				'date'		  => $item->get_date(),
 				'image'		  => $feed_config['image'],
-				'html'		  => $item->get_content()
-			);			
+				'html'		  => $item->get_content(),
+				'guid'		  => $item->get_id(),
+				'entry_link'  => $item->get_link()
+			));			
 		}
 		
 		return $new_feed;
