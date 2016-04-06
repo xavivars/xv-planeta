@@ -22,10 +22,25 @@ class XV_Planet {
 	
 	private $feed;
 	
+	private $rss_feed;
+
 	public function __construct() {
 		new XV_Planet_Infrastructure();
 	}
 	
+	public function set_rss( $rss_feed ) {
+		$this->rss_feed = $rss_feed;
+	}
+
+	public function register_rss_link() {
+		add_action( 'wp_head', array( $this, 'add_feed_link' ) );
+	}
+
+	public function add_feed_link() {
+		echo '<link rel="alternate" type="application/rss+xml" ' .
+			 'title="Softcatalà &raquo; Canal del planeta" href="' . $this->main_feed_url .'" />';
+	}
+
 	public function get_user_list() {
 		return $this->get_config_list();
 	}

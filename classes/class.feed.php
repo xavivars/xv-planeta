@@ -3,13 +3,13 @@
  * @package XV Planeta
  */
 class XV_Planet_Feed {
-	
-	private $xv_planeta;
-	
+
+    private $xv_planeta;
+
     public function __construct( $xv_planeta ) {
-		
-		$this->xv_planeta = $xv_planeta;
-		
+
+        $this->xv_planeta = $xv_planeta;
+
         # Add our query_var, 'xv_planeta_feed'
         add_filter( 'query_vars',    array( &$this, 'add_query_var' ) );
 
@@ -18,6 +18,8 @@ class XV_Planet_Feed {
 
         # We're doing this on parse_query to ensure that query vars are set
         add_action( 'pre_get_posts',   array( &$this, 'dispatch_path' ), 1 );
+
+        $this->xv_planeta->set_rss( $this );
     }
 
     /**
@@ -42,37 +44,37 @@ class XV_Planet_Feed {
 
     /**
      * When on the specified URL and the combined RSS is set up by the theme,
-	 * the combined RSS is rendered
+     * the combined RSS is rendered
      */
     public function dispatch_path( $query ) {
-		
-		if ( ! $query->is_main_query() ) {
-			return;
-		}
-		
+
+        if ( ! $query->is_main_query() ) {
+            return;
+        }
+
         if ( get_query_var( 'xv_planeta_feed' ) ) {
 
-			remove_action( 'parse_query',   array( &$this, 'dispatch_path' ) );
-			
+            remove_action( 'parse_query',   array( &$this, 'dispatch_path' ) );
+
             $create_combined_rss = apply_filters( 'xv_planeta_feed', false );
-			
-			if( $create_combined_rss !== false) {
-				
-				$this->render_rss();
-				
-				exit;
-			} else {
-				$query->set_404();
-				status_header( 404 );
-				return;
-			}
+
+            if( $create_combined_rss !== false) {
+
+                $this->render_rss();
+
+                exit;
+            } else {
+                $query->set_404();
+                status_header( 404 );
+                return;
+            }
         }
     }
-	
-	public function render_rss() {
-		$feed = $this->xv_planeta->get_feed();
-		
-		Timber::render( XV_PLANETA_PATH . '/templates/rss.twig', array( 'feed' => $feed ) );
-	}
+
+    public function render_rss() {
+        $feed = $this->xv_planeta->get_feed();
+        
+        Timber::render( XV_PLANETA_PATH . '/templates/rss.twig', array( 'feed' => $feed ) );
+    }
 }
 
