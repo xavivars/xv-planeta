@@ -65,6 +65,7 @@ class XV_Planet {
 			$new_feed->add(array(
 				'entry_title' => $item->get_title(),
 				'blog_title'  => $item->feed->get_title(),
+				'blog_link'  => $item->feed->get_link(),
 				'date'		  => $item->get_date(),
 				'image'		  => $feed_config['image'],
 				'html'		  => $item->get_content(),
