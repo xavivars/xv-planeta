@@ -3,7 +3,7 @@
 Plugin Name: XV Planeta
 Plugin URI: http://xavi.ivars.me/codi/xv-planeta
 Description: A blog planet plugin
-Version: 0.1
+Version: 1.1
 Author: Xavi Ivars
 Author URI: http://xavi.ivars.me
 License: GPLv2 or later

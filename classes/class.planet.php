@@ -106,6 +106,10 @@ class XV_Planet {
 		return $feed;
 	}
 	
+	public function get_cache_ttl() {
+		return HOUR_IN_SECONDS;
+	}
+
 	private function get_config_list() {
 		if ( $this->config_list === false ) {
 			$this->setup_config_vars();
