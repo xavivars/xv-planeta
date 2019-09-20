@@ -11,7 +11,8 @@ class XV_Planet_Config {
 		
 		$args = array(
 			'post_type' => 'blog',
-			'post_status' => 'publish'
+			'post_status' => 'publish',
+			'posts_per_page' => -1
 		);
 		
 		$query = new WP_Query( $args );
